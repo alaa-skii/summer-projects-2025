@@ -1,0 +1,45 @@
+<html>
+  <head>
+    </head>
+    <body>
+        <script>
+            let array=[];
+              
+            function dao()
+            {
+let name=document.querySelector('#in').value;
+ 
+array.push(name);
+console.log(array);
+refresh();
+            }
+function refresh()
+{
+let aff="";//داخل الحلقة ادا عرفناه هناك يعاد انشاء المتغير من الصفر وبالتالي مفيهش قيم تاع يكري وبالتالي تظهر غير اخر كلمة حطيتيها ما يظهروش كامل
+for(let i=0;i<array.length;i++)
+{
+   
+   console.log(array[i]);
+  
+   aff=aff+`<p>${array[i]} <button onClick="
+    array.splice(${i},1);
+   refresh();
+    ">supprime</button></p>`;//aff= aff+array[i]+'<br>';
+  document.querySelector('#div1').innerHTML=aff;
+ 
+}
+}    
+
+ 
+        </script>
+       <input type="text" placeholder="to do" id="in" onkeydown="
+       if(event.key==='Enter')
+       {
+        dao();
+       }
+       ">
+       <button onClick="dao()">entrer</button>
+       <p id="p1"></p>
+       <div id="div1"> </div>
+    </body>
+</html>

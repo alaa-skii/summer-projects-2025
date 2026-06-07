@@ -1,0 +1,155 @@
+<html>
+    <head><link rel="stylesheet" href="snack.css"></head>
+    <body>
+        <audio id="audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
+"></audio>
+        <div id="border"> </div>
+        <script>
+            let res={
+                score:0
+            }
+           let apple_x;
+            let apple_y;
+            move={
+            left:0,
+            top:0,
+   speed:20
+            }
+            let snack=document.createElement("div");
+snack.classList.add("snack");
+let border=document.getElementById("border");
+border.appendChild(snack);
+let x_wall=border.clientWidth-snack.clientWidth;
+let y_wall=border.clientHeight-snack.clientHeight;
+
+
+//let x = Math.floor(Math.random() * (x_wall / 20)) * 20;
+//let y = Math.floor(Math.random() * (y_wall / 20)) * 20;
+let x = 120;
+let y = 140;
+snack.style.left=x+"px";
+move.left=x;
+move.top=y;
+snack.style.top=y+"px";
+let oldKey="";
+document.addEventListener("keydown",function(e){
+    oldKey=e.key;//منقدروش في الشروط نحطو e.key parceque e est entre event listener
+//console.log(oldKey);
+})
+
+let sbody=[snack];
+let rotate;
+let i=0;
+let interval=setInterval(function(){
+   let audio= document.getElementById("audio");
+   audio.play();
+    //تحريك الجسم
+for(let i=sbody.length-1;i>0;i--)
+{
+    sbody[i].style.left=sbody[i-1].style.left;//body[i] le body body[i-1] le tete lelement  apres et avant
+        sbody[i].style.top=sbody[i-1].style.top;
+        if(rotate==="rotate(0deg)"){
+            sbody[i].style.transform=rotate;
+        }
+        else if(rotate==="rotate(-90deg)")
+        {
+            sbody[i].style.transform=rotate;
+        } else if(rotate==="rotate(90deg)")
+        {
+            sbody[i].style.transform=rotate;
+        } else if(rotate==="rotate(180deg)")
+        {
+            sbody[i].style.transform=rotate;
+        }
+
+}
+for(let i=2;i<sbody.length;i++)
+{
+    if(sbody[0].style.left==sbody[i].style.left && sbody[0].style.top==sbody[i].style.top)
+{
+    alert("you are lose");
+    res.score=0;
+    clearInterval(interval);
+    location.reload();
+}
+}
+
+    //تحريك الرأس
+
+if(oldKey==="d" && move.left+move.speed<=x_wall)
+{
+    move.left=move.left+move.speed;
+    snack.style.left=move.left;
+    snack.style.transform="rotate(0deg)";
+rotate="rotate(0deg)"
+}
+else if(oldKey==="q" && move.left-move.speed>=0)
+{
+    move.left=move.left-move.speed;
+    snack.style.left=move.left;
+     snack.style.transform="rotate(180deg)"
+    rotate="rotate(180deg)"
+}
+else if(oldKey==="z" && move.top-move.speed>=0 ) {
+       move.top=move.top-move.speed;
+    snack.style.top=move.top;
+     snack.style.transform="rotate(-90deg)";
+  rotate="rotate(-90deg)"
+}
+else if(oldKey==="s" && move.top+move.speed<=y_wall)
+{
+     move.top=move.top+move.speed;
+    snack.style.top=move.top;
+     snack.style.transform="rotate(90deg)";
+    rotate="rotate(90deg)"
+}
+let colors=["red","green","yellow","blue","gray","black","orange"];
+if(move.left==apple_x && move.top==apple_y )
+{
+    if(i>=colors.length )
+{
+    i=0;
+}
+    
+    document.body.style.background=colors[i];
+    i++;
+    apple.style.display="none";
+    create_apple();
+    res.score=res.score+1;
+    localStorage.setItem("score",res.score);
+    document.getElementById("resultat").innerHTML="score:"+res.score;
+    let snack_body=document.createElement("div");
+    snack_body.classList.add("body");
+    snack_body.style.left=move.left;
+    snack_body.style.top=move.top;
+    border.appendChild(snack_body);
+    sbody.push(snack_body);
+    console.log(body);
+
+}
+
+},100)
+//apple
+ 
+              let apple;
+            function create_apple(){
+             apple=document.createElement("div");
+                apple.id="apple";
+border.appendChild(apple);
+apple_x = Math.floor(Math.random() * ((border.clientWidth-6) / 20)) * 20;
+apple_y = Math.floor(Math.random() * ((border.clientHeight) / 20)) * 20;
+//apple_x = Math.floor(Math.random() *border.clientWidth );
+//apple_y = Math.floor(Math.random() *border.clientHeight );
+ apple.style.left=apple_x+"px";
+apple.style.top=apple_y+"px";
+
+            }
+create_apple();
+
+
+        </script>
+        <div id="resultat">
+score:0
+        </div>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+    <head><link rel="stylesheet" href="interface.css"></head>
+
+    <body>
+        <audio src="https://file.garden/aG62taSlI01WWROf/Voicy_There%20is%20a%20snack%20in%20my%20boot.mp3" id="sound"></audio>
+        <button id="first" onclick="
+        let sound = document.getElementById('sound');
+    sound.play();
+
+    document.getElementById('first').style.display='none';
+    ">click here first on any space in the page</button>
+        <a href="snack.html" class="but">start</a>
+<button class="but" onClick="
+localStorage.clear();
+location.reload();
+">new GAME</button>
+
+<script>
+    
+
+    document.querySelector(".but").addEventListener("mouseenter",function(){
+       let color= document.querySelector(".but");
+       color.style.background="red";
+       setInterval(function(){
+if( color.style.background==="red"){
+    setTimeout(() => {
+     color.style.background="green";
+        
+    }, 200);
+    
+}
+else if(color.style.background==="green")
+{
+  setTimeout(() => {
+     color.style.background="yellow";
+      
+},200)
+}
+else if(color.style.background==="yellow")
+{
+setTimeout(() => {
+     color.style.background="red";
+      
+},200)
+}
+       },200)
+    })
+    
+   let text= localStorage.getItem("score");
+  let p= document.createElement("p");
+  if(text===null){
+    text=0;
+  }
+   p.innerHTML="last score est :"+text;
+   document.body.appendChild(p);
+ 
+</script>
+
+    </body>
+</html>

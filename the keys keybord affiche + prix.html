@@ -1,0 +1,42 @@
+<html>
+<head></head>
+<body>
+  50$ et livrison gratuit<br>
+  40$ et 9$ de livrison<br>
+  <input type="text" placeholder="entrer delement numero" id="input" onkeydown="
+  console.log(event.key);
+  ///document.querySelector('#p2').innerHTML=event.key;
+  if(event.key==='Enter')
+{
+  calcule();
+}
+  "> 
+  <button onClick="calcule()">add to library</button> 
+  <p id="p2"></p>
+  <p id="p1"></p>
+  <script>
+    function calcule()
+    {
+      let a=Number(document.querySelector('#input').value);
+      console.log(a);
+      if(a==50)
+    {
+      document.querySelector('#p1').innerHTML='le prix est '+a+' $'  ;
+    }
+    else if(a==40)
+    {
+      a=a+9;
+      document.querySelector('#p1').innerHTML='le prix est '+a+' $';
+    }
+    }
+    //n5dmo bih ki ykon mkh input 3onsor 
+    //add event listener 
+   // document.addEventListener('keydown',check)
+   //function check(e)
+   //{
+   //console.log(e.key)
+   //}
+  </script>
+
+</body>
+</html>

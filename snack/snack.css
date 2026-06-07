@@ -1,0 +1,41 @@
+#border{
+    position:relative;
+    height:650px;
+    width:650px;
+    border:2px double white;
+    margin:auto;
+    background: black;
+}
+.snack{
+position:absolute;
+    border:1px double;
+    height:10px;
+    width: 30px;
+   background-color: rgb(164, 17, 194);
+
+}
+#apple{
+    border:double 2px;
+    background: orangered;
+border-radius:30px;
+height:10px;
+width:10px;
+position:absolute;
+}
+.body{
+   position:absolute;
+    border:1px double;
+    height:10px;
+    width: 30px;
+   background-color: rgb(197, 194, 34);
+}
+#resultat{
+    border: double 2px;
+    height:50px;
+    width:100px;
+font-size: 25px;
+font-family:cursive;
+}
+body{
+    background-color: rgb(8, 201, 201);
+}

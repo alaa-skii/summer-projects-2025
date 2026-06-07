@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="a.css">
+    <script>
+        let aff='';
+        let all=0;
+        /*function calcul(n)
+        {
+         
+            let a=document.querySelectorAll('.img');
+
+            for(let i=0;i<a.length;i++)
+            {
+                if(i==n)
+            {
+                console.log('le produit '+`${i+1}`+' quantity totale '+document.querySelectorAll('.num')[i].value);
+                aff=aff+`<p>le produite ${i+1} </p>`;
+              //  document.querySelector('#affiche').innerHTML=aff;
+               document.getElementById(`p${i}`).innerHTML=aff;
+            }
+            }
+            
+        }*/
+        function calcul(n) {
+            let s=document.getElementById("sound");
+s.play();
+            let quantity = document.querySelectorAll('.num')[n].value;
+           
+           let prix=document.querySelectorAll('.img')[n].querySelector('p').innerHTML;
+           let total=parseInt(prix)*quantity;
+            document.getElementById(`p${n}`).innerHTML = 'Le produit '+ `${n + 1}`+' - quantité: '+quantity+'- le totale de cette produit est  '+total+'DA';
+all=all+total;
+document.getElementById("all").innerHTML= 'le total est '+ all+'DA';
+        }
+        function reset(){
+            all=0;
+            a='';
+              document.getElementById('all').innerHTML= 'le total est '+ all+'DA';
+              for(let i=0;i<document.querySelectorAll('.img').length;i++)  
+                  {
+                 a=a+`<p id="p${i}"></p>`;
+                 }
+                 document.getElementById('affiche').innerHTML=a;
+        }
+    </script>
+    </head>
+    <body>
+        <div class="img"  > <img src="641999.jpg"><p>4000 DA</p> <input class="num" type="number" value="1"><button onclick="calcul(0)" class="ajout">ajouter library</button></div>
+         <div class="img" ><img src="1346366.png"><p>5000 DA</p> <input class="num" type="number" value="1"><button onclick="calcul(1)" class="ajout">ajouter library</button></div>
+          <div class="img" ><img src="1327041.jpeg"><p>6000 DA</p> <input class="num" type="number" value="1"><button onclick="calcul(2)" class="ajout">ajouter library</button></div>
+           <div class="img" ><img src="1356425.jpeg"><p>2000 DA</p> <input class="num" type="number" value="1"><button onclick="calcul(3)" class="ajout">ajouter library</button></div>
+            <div class="img" ><img src="1323415.png"><p>9000 DA</p> <input class="num" type="number" value="1"><button onclick="calcul(4)" class="ajout">ajouter library</button></div>
+             <div class="img" ><img src="1093511.png"><p>10000 DA</p> <input class="num" type="number" value="1"><button onclick="calcul(5)" class="ajout">ajouter library</button></div>
+              <div class="img" ><img src="1379671.jpg"><p>23000 DA</p> <input class="num" type="number" value="1"><button onclick="calcul(6)" class="ajout">ajouter library</button></div>
+              <div class="img" ><img src="135625.jpg"><p>500 DA</p> <input class="num" type="number" value="1"><button  onclick="calcul(7)"class="ajout">ajouter library</button></div><br>
+              <button onClick="reset()">reset</button>
+              <div id="affiche"></div>
+              <audio src="Buy Item Sound Effect.mp3" id="sound"></audio>
+                <script>
+                    let a='';
+                  for(let i=0;i<document.querySelectorAll('.img').length;i++)  
+                  {
+                 a=a+`<p id="p${i}"></p>`;
+                 }
+                  document.getElementById('affiche').innerHTML=a;
+            
+                </script>
+              <p id="all">le totale est 0</p>
+           
+                
+    </body>
+</html>

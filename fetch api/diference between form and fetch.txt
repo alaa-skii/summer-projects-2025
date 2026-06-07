@@ -1,0 +1,2 @@
+-form reload page and fetch not reloading
+-form redirect to another page action="go to this page" unlike fetch just get content of url page  

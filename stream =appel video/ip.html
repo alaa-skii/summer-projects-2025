@@ -1,0 +1,49 @@
+<html>
+<body>
+    <p id="candidate"></p>
+<p id="ip"></p>
+<p id="port"></p>
+<button onclick="calcul()">ip show</button>
+<script>
+     let a;
+    let streamlocale;
+    let ping={
+        iceServers:[{urls:'stun:stun.l.google.com:19302'}]
+    }
+    navigator.mediaDevices.getUserMedia({video:false,audio:true}).then(function(stream)
+{
+    streamlocale=stream;
+  
+});
+function calcul(){
+     a=new RTCPeerConnection(ping);
+   
+   streamlocale.getTracks().forEach(function (track){
+    a.addTrack(track,streamlocale);
+})
+ a.onicecandidate=function (event)
+    {
+        if(event.candidate){//لمنع ظهور الاسطر الحمراء في الكنصول اي نزع قيم null
+        console.log(event.candidate.candidate);
+let c=event.candidate.candidate;
+let parts=c.split(" ");
+let ip=parts[4];
+let port=parts[5];
+let type=parts[7];
+if(type==="srflx")//srflx type de ip intenrnet et host type ip locale
+{
+document.getElementById("candidate").innerHTML=type;
+document.getElementById("ip").innerHTML=ip;
+document.getElementById("port").innerHTML=port;
+    }
+}
+    }
+    a.createOffer()
+    .then(offer => {
+      a.setLocalDescription(offer);
+      
+    });
+    }
+</script>
+</body>
+</html>

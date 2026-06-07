@@ -1,0 +1,50 @@
+<html>
+    <head></head>
+    <body>
+    <style>
+        #a{
+            position:absolute;
+            background:black;
+            
+
+        }
+    </style>
+        <div id="a" ></div>
+<script>
+    let player ={
+        element:   document.getElementById("a"),
+        height:40,
+        width:40,
+        x:100,
+        y:100,
+        speed:50
+    }
+    document.getElementById("a").style.left=player.x;
+    document.getElementById("a").style.top=player.y;
+player.element.style.width=player.width;
+player.element.style.height=player.height;
+document.addEventListener('keydown',function(e)
+{
+    console.log(e);
+     if(e.key==='q'){
+        player.x=player.x-player.speed;
+    }
+    else if(e.key==='d'){
+        player.x=player.x+player.speed;
+    }
+    else if(e.key==='z'){
+        player.y=player.y-player.speed;
+    }
+    else if(e.key==='s')
+    {
+        player.y=player.y+player.speed;
+    }
+    player.element.style.left = player.x ;
+      player.element.style.top = player.y ;
+});
+   
+    
+</script>
+        
+    </body>
+    </html>

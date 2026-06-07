@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script>
+function equal()
+{
+    var p1=document.getElementById('p').value;
+    var p2=document.getElementById('pa').value;
+    if(p1!=p2)
+{
+    alert('mot de pass pas correspanandant');
+}
+else{
+    alert('success');
+}
+}
+        </script>
+    </head>
+    <body>
+        Email<input type="texte"><br><br>
+        Password<input type="texte" id="p" onBlur="equal()"><br><br>
+        confirmer password<input type="texte" id="pa" onblur="equal()"><br><br>
+        <button onClick="equal()">confirmer</button>
+    </body>
+</html>

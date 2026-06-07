@@ -1,0 +1,33 @@
+<html>
+
+<head></head>
+
+<body>
+
+    nombre1<input type="number" id="n1"><br>
+    nombre2<input type="number" id="n2"><br>
+    <select name="s" id="op">
+   
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <button onclick="calcul()">calcule</button>
+    <div id="resultat"></div>
+    <script>
+        function calcul() {
+
+            nbr1 = document.getElementById("n1").value;//$_POST[] en php equivalent
+            nbr2 = document.getElementById("n2").value;
+            op = document.getElementById("op").value;
+            if (op == "+") resultat = Number(nbr1) + Number(nbr2);
+            if (op == "-") resultat = nbr1 - nbr2;
+            if (op == "*") resultat = nbr1 * nbr2;
+            if (op == "/") resultat = nbr1 / nbr2;
+            document.getElementById("resultat").innerHTML = 'resultat=' + resultat;
+        }
+    </script>
+</body>
+
+</html>

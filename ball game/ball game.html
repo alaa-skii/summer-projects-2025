@@ -1,0 +1,279 @@
+<html>
+    <head>
+        <title>ball game </title>
+    <style>
+#frame{
+    border:double 2px;
+    height: 500px;;
+    width:645px;
+    position: relative;
+}
+body{
+    background-color:burlywood ;
+}
+.buts{
+    
+    
+    width:100px;
+    height:20px;
+    border:double 2px;
+    position: absolute;
+    background: blue;
+    
+   
+}
+#p1{
+      width:150px;
+    height:20px;
+    border:double 2px;
+    background: rgb(87, 13, 4);
+     position:absolute;
+     top:400px;
+}
+#ball{
+    border: 1px double;
+    background: black;
+    height:15px;
+    width:15px;
+    border-radius: 30px;
+    position:absolute;
+}
+#score{
+    height:360px;
+    width:500px;
+    border: double;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: chartreuse;
+    font-size: 30px;
+}
+
+#b2{
+    position: absolute;
+     left:75%;
+    top:80%;
+    padding: 20px;
+    background-color: aqua;
+}
+#b3{
+    position: absolute;
+    left:83%;
+    top:80%;
+    padding: 20px;
+    background-color: aqua;
+}
+
+</style>
+    </head>
+    <body>
+<div id="frame">
+<div id="p1"></div>
+
+</div>
+<button id="b2" onclick="moveLeft()">⭠</button>
+<button id="b3" onclick="moveRight()">⭢</button>
+<script>
+   
+  let  result={
+       score:0,
+       level:0
+    }
+    move={
+        speed:20,
+        left:200,
+       
+    }
+    setInterval(function(){
+        let video2=document.getElementById("audio2")
+        video2.play();
+    },500);
+    let frame=document.querySelector("#frame");
+   let x=0;
+   let y=0;
+   let space=5;
+   let blockWidth=100;
+      let blockHeight=20;
+      let maxWidth=645;
+    console.log(frame.clientWidth);
+    for(let i=0;i<30;i++)
+{
+    
+let buts=document.createElement("div");
+   buts.classList.add("buts");
+  buts.style.left=x+"px";
+  buts.style.top = y+"px";
+    frame.appendChild(buts);
+    x=x+blockWidth+space;
+    if(x+blockWidth>maxWidth)
+{
+    x=0;
+    y=y+blockHeight+space;
+}
+}
+let p1=document.getElementById("p1");
+p1.style.left=move.left+"px";
+function moveRight(){
+      let wall_frame=frame.clientWidth-p1.clientWidth ;
+    if(move.left>=wall_frame)
+{
+move.left=wall_frame;
+}else{
+   p1.style.left=(move.left+move.speed)+"px";
+     move.left=(move.left+move.speed);
+     }
+}
+function moveLeft(){
+     if(move.left<=0)
+{
+    move.left=0;
+}else{
+    p1.style.left=(move.left-move.speed)+"px";
+     move.left=(move.left-move.speed);
+     }
+}
+document.addEventListener('keydown',function(e){
+console.log(e.key);
+
+if(e.key==="ArrowRight")
+{
+    let wall_frame=frame.clientWidth-p1.clientWidth ;
+    if(move.left>=wall_frame)
+{
+move.left=wall_frame;
+}else{
+   p1.style.left=(move.left+move.speed)+"px";
+     move.left=(move.left+move.speed);
+     }
+}
+if(e.key==="ArrowLeft")
+{
+    if(move.left<=0)
+{
+    move.left=0;
+}else{
+    p1.style.left=(move.left-move.speed)+"px";
+     move.left=(move.left-move.speed);
+     }
+}
+})
+let ball=document.createElement("div");
+ball.id="ball";
+let ball_x=250;//left
+let ball_y=360;//top
+ball.style.left=ball_x;
+ball.style.top=ball_y;
+
+
+let dx=Number(localStorage.getItem("dx"));
+let dy=Number(localStorage.getItem("dy"));
+if (isNaN(dx) || dx === 0) dx = 10;
+if (isNaN(dy) || dy === 0) dy = -10;
+frame.appendChild(ball);
+let interval=setInterval(function()
+{
+ball_x=ball_x+dx;
+ball_y=ball_y+dy;
+ball.style.left=ball_x;
+ball.style.top=ball_y;
+if(ball_x<=0 || frame.clientWidth-ball.clientWidth<=ball_x){
+dx=-dx;
+ball.style.left=ball_x;
+    }
+else if(ball_y<=0)
+ 
+{
+    
+dy=-dy;
+ball.style.top=ball_y;
+}
+else if( ball_y>=frame.clientHeight-ball.clientHeight)
+{
+    clearInterval(interval);
+    alert("you are LOSE");
+    location.reload();
+}
+else if(p1.offsetTop-ball.clientHeight<=ball_y &&
+    ball_x +ball.clientWidth  >= p1.offsetLeft &&     //معناه البالو كاملة تصطدم فقط بلي وش ورا الجزاء الايسر للجدار من الجهة اليمنى فقط 
+ ball_x <= p1.offsetLeft + p1.clientWidth)//offsetTop=هو نفسه top: en css du element choisir// الجزء الايسر فقط للكرة يرجع الكرة كاملة ادا اصطدم بأي جزء حتى فراغ قبل الجزء الايمن للمضرب
+{//عند جمع الاثنين الشرطين يصبح محصور بين الجزء  الايمن والايسر للمضرب اي المضرب فقط 
+dy=-dy;
+ball.style.top=ball_y;
+}
+let blocks = document.querySelectorAll(".buts");
+
+/*for (let i = 0; i < blocks.length; i++) {
+    let b = blocks[i];
+
+    let blockTop = b.offsetTop;
+    let blockBottom = blockTop + b.offsetHeight;
+    let blockLeft = b.offsetLeft;
+    let blockRight = blockLeft + b.offsetWidth;
+
+    let ballTop = ball.offsetTop;
+    let ballBottom = ballTop + ball.offsetHeight;
+    let ballLeft = ball.offsetLeft;
+    let ballRight = ballLeft + ball.offsetWidth;
+
+    if (
+        ballBottom >= blockTop &&
+        ballTop <= blockBottom &&
+        ballRight >= blockLeft &&
+        ballLeft <= blockRight
+    ) {
+        b.style.display = "none";
+        dy = -dy;
+        break; // نوقف بعد أول بلوك يتم لمسه
+    }
+}*/
+
+//
+for(let i=0;i<blocks.length;i++)
+{
+
+    let b=blocks[i];
+    if(ball.offsetTop<=b.offsetTop+b.offsetHeight &&//بالشرط هدا تجبد اجداثيات لي يتصادم معاهم كيما في p1
+        ball.offsetHeight+ball.offsetTop>=b.offsetTop &&
+        ball.offsetLeft+ball.offsetWidth>=b.offsetLeft &&
+        ball.offsetLeft<=b.offsetLeft+b.offsetWidth
+    )
+{
+    b.style.display="none";
+let audio=document.getElementById("audio1");
+audio.play();
+    dy=-dy;
+    result.score=result.score+1;
+    document.querySelector("#p2").innerHTML="score:"+result.score;
+    
+    if(result.score==30)
+{
+    
+    dx=dx+5;
+    dy=dy-5;
+    localStorage.setItem("dx",dx);
+    localStorage.setItem("dy",dy);
+    result.level=Number(localStorage.getItem("level"));
+    result.level=result.level+1;
+    localStorage.setItem("level",result.level);
+   alert("level"+result.level);
+ location.reload();
+   
+   
+    
+}
+   break;
+}
+
+}
+},60)
+
+</script>
+<div id="score">
+    <p id="p2">score:0</p>
+</div>
+<button onclick="
+localStorage.clear();
+location.reload();
+">jouer au debut</button>
+<audio id="audio1" src="mixkit-fast-small-sweep-transition-166.wav"></audio>
+<audio id="audio2" src="mixkit-rain-and-thunder-storm-2390.wav"></audio>
+    </body>
+</html>

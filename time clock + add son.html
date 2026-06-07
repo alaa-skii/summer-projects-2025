@@ -1,0 +1,30 @@
+<htmL>
+  <head>
+    <script>
+function sound()  {
+  let son = document.getElementById("monSon");
+ 
+  son.play();
+ 
+}
+function vide(){
+ let vid = document.getElementById("monv");
+  vid.play();
+}
+
+      function jouerSon() {
+setTimeout(sound,3500);///2eme function defini عندما نستدعي دالة بارامتر دالة في جافا سكربت دائما ننزع الاقواس
+     setInterval(sound,3500);//t3wd tnafad dala kl 3 tawani tb9a t3wd mt7bssh
+     setTimeout(vide,6000);
+     }
+</script>
+</head>
+  <body>
+    <script>
+    setTimeout(function (){ console.log('time out')},3000);//premiere parametre est une function deuxieme est le temp en second ki yfad lw9t ttnfd dala
+</script>
+<audio id="monSon" src="Super mario bros 1 death theme sound.mp3"></audio>
+<video id="monv" src="ac shadow.mp4" height="600" width="600" ></video>
+<button onclick="jouerSon()">play</button>
+    </body>
+</htmL>

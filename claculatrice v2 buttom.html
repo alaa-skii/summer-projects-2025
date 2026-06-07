@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="a.css">
+    <script>
+        
+    let c='';
+    console.log(c);
+        function calcule(a)
+        {
+            
+let b=document.querySelector("#inp");
+c=c+a;
+b.value=c;
+
+console.log(c);
+        }
+        function operation(o)
+        {
+            c=c+o;
+          let b= document.querySelector("#inp");
+          b.value=c;
+        }
+function calcul()
+
+{
+    console.log(eval(c));
+}
+        
+    </script>
+    </head>
+    <body>
+        <div id="div1">
+            <input type="text" id="inp">         <br>
+            <button onClick="calcule(0)">0</button>
+             <button onClick="calcule(1)">1</button>
+              <button onClick="calcule(2)">2</button>
+               <button onClick="calcule(3)">3</button>
+                <button onClick="calcule(4)">4</button>
+                 <button onClick="calcule(5)">5</button>
+                  <button onClick="calcule(6)">6</button>
+                   <button onClick="calcule(7)">7</button>
+                    <button onClick="calcule(8)">8</button>
+                     <button onClick="calcule(9)">9</button>
+                      <button onClick="operation('+')">+</button>
+                       <button onClick="operation('-')">-</button>
+                        <button onClick="operation('*')">*</button>
+                         <button onClick="operation('/')">/</button>
+                          <button onClick="calcul()">=</button>
+                           
+        </div>
+    </body>
+</html>

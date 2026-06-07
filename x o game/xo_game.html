@@ -1,0 +1,94 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="xo.css">
+
+    </head>
+    <body>
+<div id="tete">xo Game</div>
+<div id="content">
+    <div class="xo"  onClick="entre(0)"></div>
+    <div class="xo"  onClick="entre(1)"></div>
+    <div class="xo"  onClick="entre(2)"></div>
+    <div class="xo"  onClick="entre(3)"></div>
+    <div class="xo"  onClick="entre(4)"></div>
+    <div class="xo"  onClick="entre(5)"></div>
+    <div class="xo"  onClick="entre(6)"></div>
+    <div class="xo"  onClick="entre(7)"></div>
+    <div class="xo"  onClick="entre(8)"></div>
+</div>
+  <script>
+     let care= document.querySelectorAll(".xo");
+        let turn="x";
+        function win()
+        {
+            if(care[0].innerHTML==care[1].innerHTML && care[1].innerHTML==care[2].innerHTML &&care[0].innerHTML!="" && care[1].innerHTML!="" && care[2].innerHTML!="")
+        {
+            console.log("win");
+          alert( care[0].innerHTML+" win");
+location.reload();
+       
+        } 
+        if(care[3].innerHTML==care[4].innerHTML && care[4].innerHTML==care[5].innerHTML &&care[3].innerHTML!="" && care[4].innerHTML!="" && care[5].innerHTML!="")
+    {
+        console.log("win");
+        alert( care[3].innerHTML+" win");
+        location.reload();
+    }   
+    if(care[6].innerHTML==care[7].innerHTML && care[7].innerHTML==care[8].innerHTML &&care[6].innerHTML!="" && care[7].innerHTML!="" && care[8].innerHTML!="")
+    {
+console.log("win");
+alert( care[6].innerHTML+" win");
+location.reload();
+    }
+    if(care[0].innerHTML==care[3].innerHTML && care[3].innerHTML==care[6].innerHTML &&care[0].innerHTML!="" && care[3].innerHTML!="" && care[6].innerHTML!="")
+    {
+console.log("win");
+alert( care[0].innerHTML+" win");
+location.reload();
+    }
+       if(care[1].innerHTML==care[4].innerHTML && care[4].innerHTML==care[7].innerHTML &&care[1].innerHTML!="" && care[4].innerHTML!="" && care[7].innerHTML!="")
+
+    {
+console.log("win");
+alert( care[1].innerHTML+" win");
+location.reload();
+    }
+        if(care[2].innerHTML==care[5].innerHTML && care[5].innerHTML==care[8].innerHTML &&care[2].innerHTML!="" && care[5].innerHTML!="" && care[8].innerHTML!="")
+{
+    console.log("win");
+    alert( care[2].innerHTML+" win");
+    location.reload();
+}
+    if(care[0].innerHTML==care[4].innerHTML && care[4].innerHTML==care[8].innerHTML &&care[0].innerHTML!="" && care[4].innerHTML!="" && care[8].innerHTML!="")
+{
+console.log("win");
+alert( care[0].innerHTML+" win");
+location.reload();
+}
+    if(care[2].innerHTML==care[4].innerHTML && care[4].innerHTML==care[6].innerHTML &&care[2].innerHTML!="" && care[4].innerHTML!="" && care[6].innerHTML!="")
+{
+console.log("win");
+alert( care[2].innerHTML+" win");
+location.reload();
+}
+        }
+function entre(a)
+{
+//care= document.querySelectorAll(".xo");
+    if(turn==="x" && care[a].innerHTML==="")
+{
+   
+   care[a].innerHTML="x";
+   turn="o";
+}
+else if(turn==="o" && care[a].innerHTML==="")
+{
+care[a].innerHTML="o";
+turn="x";
+}
+win();
+}
+      </script>
+      <a href="games.html">back</a>
+    </body>
+</html>

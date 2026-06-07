@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <style>
+            body{
+                background:url("249922.jpg") ;
+                
+            }
+        #frame{
+            position: relative;
+border: double 2px;
+height:700px;
+width:900px;
+margin:100px auto ;
+background:url("nature.png");
+background-size: 100% 100%;
+        }
+        .obstacle{
+            border-top-left-radius:20px  ;
+            border-top-right-radius:20px ;
+        }
+        #birdStyle{
+            position: absolute;
+           
+            border-radius: 100px;
+            height:40px;
+            width:40px;
+            background: url("aa.png");
+            background-size:100% 100% ;
+         
+        }
+        
+        
+        #score,#lastScore{
+            height: 36px;
+            width:200px;
+            border: double 2px;
+            background-color: black;
+            color: beige;
+        }
+        </style>
+    </head>
+    <body>
+        <audio src="https://file.garden/aG62taSlI01WWROf/mario.mp3" id="sound"></audio>
+          <audio src="https://file.garden/aG62taSlI01WWROf/defet.mp3" id="sound2" ></audio>
+        <h1 align="center">flappy bird</h1>
+        <div id="frame"></div>
+        <script>
+        let sound=document.getElementById("sound");
+        let sound2=document.getElementById("sound2");
+            let resultat={
+                score:0
+            }
+            let click;
+            let prop={
+           color:"red",
+              
+               speed:30,
+               jump:80,
+               top:250,
+               left:100
+            }
+             let frame=document.getElementById("frame");
+let bird=document.createElement("div");
+bird.id="birdStyle";
+//bird.style.background=prop.color;
+bird.style.top=prop.top;
+bird.style.left=prop.left;
+frame.appendChild(bird);
+document.addEventListener("keydown",function(e){
+    if(e.key==="Enter")
+{
+click=e.key;
+console.log(e.key);
+prop.top=prop.top-prop.jump;
+bird.style.top=prop.top;
+bird.style.transform="rotate(-70deg)";
+sound.play(); 
+}
+})
+
+
+   let interval=setInterval(function(){
+       
+        //prop.top=prop.top+prop.speed;
+//bird.style.top=prop.top;
+wall_top=frame.clientHeight-bird.clientHeight;
+wall_left=frame.clientWidth-bird.clientWidth;
+prop.top=prop.top+prop.speed;
+bird.style.top=prop.top;
+setTimeout(()=>{
+        bird.style.transform="rotate(70deg)";
+},1000)
+
+   
+if(prop.top>wall_top  )
+{
+    sound.pause();
+    sound2.play();
+alert("you lose");
+
+clearInterval(interval);
+location.reload();
+}
+if(prop.top-prop.speed<=0)
+{
+    sound.pause();
+    sound2.play();
+   alert("you lose");
+  
+   
+clearInterval(interval);
+location.reload();
+}
+
+    },200)
+function createObstacle()
+{
+    
+   
+    let obstacle=document.createElement("div");
+    obstacle.classList.add("obstacle");
+    obstacle.style.background="green";
+    obstacle.style.position="absolute";
+    obstacle.style.width="100";
+    obstacle.style.height=Math.random()*(frame.clientHeight-100);
+    frame.appendChild(obstacle);
+   obstacle.style.left=frame.clientWidth-obstacle.clientWidth;
+    console.log(obstacle.clientWidth);//obstacle .clienHeight lazam tt7t wra appendChild
+    obstacle.style.top=frame.clientHeight-obstacle.clientHeight;
+    obstacle.style.left=frame.clientWidth-obstacle.clientWidth;
+    let move={
+speed:40,
+left:frame.clientWidth-obstacle.clientWidth,
+top:frame.clientHeight-obstacle.clientHeight
+    }
+    let inter=setInterval(function(){
+        move.left=move.left-move.speed;
+obstacle.style.left=move.left;
+if(prop.top<move.top+obstacle.clientHeight
+ && prop.top+bird.clientHeight>move.top
+&& prop.left<move.left+obstacle.clientWidth 
+&&prop.left+bird.clientWidth>move.left)
+{
+    sound.pause();
+    sound2.play();
+   alert("you lose");
+clearInterval(inter);
+location.reload();
+}
+if(move.left<0)
+{
+    clearInterval(inter);//العوائق لا تتوقف لان كل عائق له انترفال خاص به اي كل ما يعمل كريايت اوبسطاكل يعمل عائق جديد ومعه انترفال خاصة به
+    obstacle.remove();
+    resultat.score=resultat.score+1;
+    localStorage.setItem("score",resultat.score);
+      
+            document.getElementById("score").innerHTML="score:"+resultat.score;
+}
+    },200)
+}
+createObstacle();
+setInterval(()=>{
+    createObstacle();
+},2000)
+
+        </script>
+        <div id="score">
+score:0<br>
+        </div>
+        <div id="lastScore">
+
+        </div>
+        <script>
+             let scor=localStorage.getItem("score");
+            if(scor===null)
+        {
+            scor=0;
+        }
+            document.getElementById("lastScore").innerHTML="last score:"+scor;
+        </script>
+        </body>
+</html>

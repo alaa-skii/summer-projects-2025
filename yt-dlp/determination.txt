@@ -1,0 +1,9 @@
+est une utile utilizer avec cmd pour instaler les video youtue ou tik tok ou facebook ……….. est aussi utuliser avec php ou java ou paython ….. pour fair download les video sur les sites ou une application pour unstaler les video
+cd Downloads=>فأنت تقول للنظام:🎒 "أدخل إلى مجلد   Downloads، لأني أريد تنفيذ أوامري من هناك."
+yt-dlp.exe "https://youtube.com/watch?v=..."=>شغّل الأداة  yt-dlp الموجودة في هذا المجلد، لتحمّل الفيديو.
+
+les commandes:
+yt-dlp -F "url" =>affiche les resolution de video et fps et audio 
+yt-dlp -f numero contient dans lafichage en -F
+yt-dlp -f bv+ba(best video only+best audio aunly)
+yt-dlp -f "bv(obligatoire ecrire bv pour determine le type de stream video ou audio)[height=1080][fps=60]+ba"(entre " " parceque fcontient des [] etudier dans /L2infomatique/se/cmd.txt)

@@ -1,0 +1,2 @@
+est une fonction utuliser dans le java script pour eviter le nombre reele est trnforme a nombre naturelle sans vergule a la distance  bas telque math.floor(4.9)=4 
+il etuliser plus important avec math.random() est une fonction donner nombre rell entre 0 et le 1 utulise avec floor pour la precision (الدقة ) surtout dans les jeux 

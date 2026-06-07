@@ -1,0 +1,76 @@
+<html>
+    <head></head>
+    <body>
+        
+        
+        
+   
+            <script>
+                let produits=[//drna array psq 3ndna bzaf produits kon ja 3ndna produite w7d bk mndirosh array
+                    {
+                       nom:"iphone",
+                       prix:10000,
+                       img:"iphone.jpeg",
+                       quantity:0
+                    },
+                    
+                    {
+nom:"galaxy_A10",
+prix:16000,
+img:"sumsung.jpg",
+   quantity:0
+                    },
+
+                    {
+nom:"playstation5",
+prix:90000,
+img:"ps5.jpeg",
+    quantity:0
+                    }
+                ]
+                
+                let prix_totale=0;
+                function affiche(index)
+                {
+                    console.log("succes");
+  
+produits[index].quantity=produits[index].quantity+Number(document.querySelectorAll("input")[index].value);
+console.log(produits[index].nom+"="+produits[index].quantity)
+//document.body.innerHTML=p.quantity;
+            
+                }
+                let content='';
+               
+                produits.forEach((p,index)=>{
+
+content=content+`<div class="product"><img src=${p.img} ><p>${p.nom}</p><p>${p.prix}</p><input type="number" class="input" value="0"><button onClick="affiche(${index})">ajouter dans library</button></div>`
+         });
+                document.body.innerHTML=content;
+             
+
+
+
+            </script>
+             <style>
+                .input{
+width:100%;
+                }
+            .product{
+             height:30%;
+             width:16%;
+             margin-left:50px;
+               background:rgba(10, 10, 114,0.2) ;
+               display: inline-block;
+               
+               border-radius: 15px;
+               text-align: center;
+               font-family:cursive;
+                        }
+                        img{
+                            height:55%;
+                            width:100%;
+                        }
+                       
+            </style>
+</body>
+</html>

@@ -1,0 +1,25 @@
+#tete{
+    padding:30px;
+    background-color:brown;
+    color:white;
+    width:50%;
+    text-align: center;
+    margin:auto;
+    font-size: 30px;
+    font-weight: bold;
+}
+.xo{
+    background:rgb(105, 197, 19);
+    margin-top: 2%;
+    height:25%;
+    width:25%;
+    margin-left:3%;
+float:left;
+text-align: center;
+font-size:200px;
+cursor:pointer;
+border-radius: 9px;
+}
+body{
+    background:rgb(21, 86, 112);
+}

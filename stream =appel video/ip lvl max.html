@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>اكتشاف IP و Port الخارجي</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #results { font-size: 18px; white-space: pre-wrap; color: green; }
+  </style>
+</head>
+<body>
+
+  <h2>🌐 عنوان IP و Port الخارجي الخاص بك:</h2>
+  <div id="results">... جاري الاكتشاف ...</div>
+
+  <script>
+    const resultBox = document.getElementById('results');
+
+    const config = {
+      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+    };
+
+    const peerConnection = new RTCPeerConnection(config);
+    peerConnection.createDataChannel("test"); // تفعيل ICE
+
+    peerConnection.onicecandidate = event => {
+      if (event.candidate) {
+        const candidateStr = event.candidate.candidate;
+
+        // استخراج IP و Port
+        const regex = /([0-9]{1,3}(?:\.[0-9]{1,3}){3})\s+([0-9]{1,5})/;
+        const match = candidateStr.match(regex);
+
+        if (match) {
+          const ip = match[1];
+          const port = match[2];
+          resultBox.textContent = `✅ IP الخارجي: ${ip}\n🔢 Port: ${port}`;
+          peerConnection.onicecandidate = null; // إيقاف بعد أول نتيجة
+        }
+      } else {
+        console.log("✅ انتهى توليد الـ ICE candidates");
+      }
+    };
+
+    // بدء التفاوض
+    peerConnection.createOffer()
+      .then(offer => peerConnection.setLocalDescription(offer))
+      .catch(error => {
+        resultBox.textContent = "❌ خطأ في إنشاء العرض: " + error;
+      });
+  </script>
+
+</body>
+</html>

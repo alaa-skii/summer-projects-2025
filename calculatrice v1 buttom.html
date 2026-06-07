@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="a.css">
+    <script>
+        let op="";
+        let num1='';
+        let num2='';
+    let c='';
+    console.log(c);
+        function calcule(a)
+        {
+            
+let b=document.querySelector("#inp");
+c=c+a;
+b.value=c;
+
+console.log(c);
+        }
+        function operation(o)
+        {
+num1=c;
+ op=o;
+            c=c+o;
+          let b= document.querySelector("#inp");
+          b.value=c;
+        }
+function calcul()
+{
+    let r;
+   console.log(c.length);
+   for(let i=num1.length+1;i<c.length;i++)
+   {
+    num2=num2+c[i];
+    console.log(num2);
+   }
+   n1=Number(num1);
+   n2=Number(num2);
+   if(op==='+')
+   {
+    r=n1+n2;
+   }
+   else if(op==='-'){
+r=n1-n2;
+   } else if(op==='*'){
+r=n1*n2;
+   } else if(op==='/'){
+r=n1/n2;
+   }
+   console.log(r);
+   document.querySelector('#inp').value=r;
+}
+        
+    </script>
+    </head>
+    <body>
+        <div id="div1">
+            <input type="text" id="inp">         <br>
+            <button onClick="calcule(0)">0</button>
+             <button onClick="calcule(1)">1</button>
+              <button onClick="calcule(2)">2</button>
+               <button onClick="calcule(3)">3</button>
+                <button onClick="calcule(4)">4</button>
+                 <button onClick="calcule(5)">5</button>
+                  <button onClick="calcule(6)">6</button>
+                   <button onClick="calcule(7)">7</button>
+                    <button onClick="calcule(8)">8</button>
+                     <button onClick="calcule(9)">9</button>
+                      <button onClick="operation('+')">+</button>
+                       <button onClick="operation('-')">-</button>
+                        <button onClick="operation('*')">*</button>
+                         <button onClick="operation('/')">/</button>
+                          <button onClick="calcul()">=</button>
+                           
+        </div>
+    </body>
+</html>
